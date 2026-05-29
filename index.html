@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Caiman Bank - Dashboard</title>
+  <title>Cayman Bank - Dashboard</title>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -556,7 +556,7 @@ function generatePDF() {
   }).join('');
 
   const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Caiman Bank Statement</title>
+<title>Cayman Bank Statement</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:Arial,sans-serif;color:#1a1f2e;background:white;font-size:10px;}
@@ -602,7 +602,7 @@ function generatePDF() {
 <div class="hdr">
   <div class="hdr-left">
     <div class="hdr-circle">C</div>
-    <div><div class="hdr-title">Caiman National Bank</div><div class="hdr-sub">BANK STATEMENT &mdash; CONFIDENTIAL &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018</div></div>
+    <div><div class="hdr-title">Cayman National Bank</div><div class="hdr-sub">BANK STATEMENT &mdash; CONFIDENTIAL &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018</div></div>
   </div>
   <div class="hdr-right">
     <div>Statement Date: ${fmtDate('2026-05-29')}</div>
@@ -634,7 +634,7 @@ function generatePDF() {
   <div class="final-row"><span style="color:#6b7280;">Net Movement</span><span class="${net>=0?'inc':'exp'}" style="font-weight:700;">${net>=0?'+':'-'}${fmt(Math.abs(net))}</span></div>
   <div class="final-row total"><span>Current Account Balance</span><span class="blue">${fmt(BALANCE)}</span></div>
 </div>
-<div class="footer">Caiman National Bank &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018 &nbsp;|&nbsp; Confidential &mdash; intended solely for the named account holder.</div>
+<div class="footer">Cayman National Bank &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018 &nbsp;|&nbsp; Confidential &mdash; intended solely for the named account holder.</div>
 <script>window.onload=function(){window.print();}<\/script>
 </body></html>`;
 
