@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,7 @@
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
     .fade-in { animation: fadeIn 1.2s ease forwards; }
 
     header { background: white; border-bottom: 1px solid #e8ecef; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
@@ -21,15 +22,9 @@
 
     .balance-card {
       background: linear-gradient(135deg,#3b82f6,#2563eb);
-      border-radius: 1rem;
-      color: white;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      position: relative;
-      min-height: 175px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-radius: 1rem; color: white; padding: 2rem; margin-bottom: 2rem;
+      position: relative; min-height: 175px; display: flex;
+      align-items: center; justify-content: space-between;
     }
     .balance-inner { flex: 1; }
     .balance-label { opacity:.9;font-size:.9rem; }
@@ -40,20 +35,11 @@
     .card-details p { margin:.4rem 0 0;opacity:.95;font-size:.9rem; }
 
     .vip-card {
-      width: 275px;
-      min-width: 275px;
-      height: 162px;
-      border-radius: 14px;
-      padding: 14px 18px;
-      box-shadow: var(--card-shadow);
-      background: linear-gradient(135deg,#d4af37,#ffd86b);
-      color: #102030;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.18);
-      margin-left: 2rem;
+      width: 275px; min-width: 275px; height: 162px; border-radius: 14px;
+      padding: 14px 18px; box-shadow: var(--card-shadow);
+      background: linear-gradient(135deg,#d4af37,#ffd86b); color: #102030;
+      display: flex; flex-direction: column; justify-content: space-between;
+      overflow: hidden; border: 1px solid rgba(255,255,255,.18); margin-left: 2rem;
     }
     .chip { width:44px;height:32px;border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.6)); }
     .top-row { display:flex;justify-content:space-between;align-items:center;gap:10px; }
@@ -82,32 +68,22 @@
     .transaction-amount.negative { color: #ef4444; }
     .transaction-left { display:flex;align-items:center; }
 
-    .spinner {
-      width: 58px; height: 58px;
-      border: 5px solid rgba(255,255,255,0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-    }
+    .spinner { width:58px;height:58px;border:5px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.9s linear infinite; }
     .spinner-label { margin-top:22px;font-size:1rem;letter-spacing:1.5px;opacity:.9;font-weight:600; }
 
-    /* ===== MODAL EXTRACTOS ===== */
+    /* ===== MODALS ===== */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,.55);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 5000; opacity: 0; pointer-events: none;
-      transition: opacity .25s ease;
+      position:fixed;inset:0;background:rgba(0,0,0,.55);
+      display:flex;align-items:center;justify-content:center;
+      z-index:5000;opacity:0;pointer-events:none;transition:opacity .25s ease;
     }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-overlay.open { opacity:1;pointer-events:all; }
     .modal-box {
-      background: white; border-radius: 1.25rem;
-      padding: 2rem; width: 92%; max-width: 580px;
-      box-shadow: 0 24px 60px rgba(0,0,0,.22);
-      transform: translateY(20px);
-      transition: transform .25s ease;
-      max-height: 90vh; overflow-y: auto;
+      background:white;border-radius:1.25rem;padding:2rem;width:92%;max-width:580px;
+      box-shadow:0 24px 60px rgba(0,0,0,.22);transform:translateY(20px);
+      transition:transform .25s ease;max-height:90vh;overflow-y:auto;position:relative;
     }
-    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-overlay.open .modal-box { transform:translateY(0); }
     .modal-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem; }
     .modal-header h2 { font-size:1.2rem;color:#1a1f2e; }
     .modal-close { background:none;border:none;font-size:1.5rem;cursor:pointer;color:#6b7280;padding:4px; }
@@ -117,8 +93,7 @@
     .form-group label { display:block;font-size:.85rem;font-weight:600;color:#374151;margin-bottom:.4rem; }
     .form-group input, .form-group select {
       width:100%;padding:.65rem .9rem;border:1.5px solid #e5e7eb;border-radius:.6rem;
-      font-size:.95rem;outline:none;transition:border-color .15s;
-      font-family: inherit;
+      font-size:.95rem;outline:none;transition:border-color .15s;font-family:inherit;
     }
     .form-group input:focus, .form-group select:focus { border-color:#3b82f6; }
 
@@ -131,9 +106,8 @@
     }
     .btn-primary:hover { opacity:.9; }
     .btn-secondary {
-      width:100%;padding:.75rem;background:#f3f4f6;
-      color:#374151;border:1.5px solid #e5e7eb;border-radius:.75rem;font-size:.95rem;font-weight:500;
-      cursor:pointer;transition:background .15s;margin-top:.5rem;
+      width:100%;padding:.75rem;background:#f3f4f6;color:#374151;border:1.5px solid #e5e7eb;
+      border-radius:.75rem;font-size:.95rem;font-weight:500;cursor:pointer;transition:background .15s;margin-top:.5rem;
     }
     .btn-secondary:hover { background:#e5e7eb; }
 
@@ -144,8 +118,7 @@
     .preview-item .pi-name { color:#1a1f2e;font-weight:500; }
     .preview-item .pi-date { color:#6b7280;font-size:.82rem; }
     .preview-item .pi-amount { font-weight:600; }
-    .pi-income { color:#22c55e; }
-    .pi-expense { color:#ef4444; }
+    .pi-income { color:#22c55e; } .pi-expense { color:#ef4444; }
 
     .summary-box { background:#f8f9fa;border-radius:.75rem;padding:1rem 1.2rem;margin-bottom:1rem; }
     .summary-row { display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:.35rem; }
@@ -161,11 +134,162 @@
     }
     .beneficiary-save { background:#3b82f6;color:white;border:none;border-radius:.5rem;padding:.4rem .8rem;cursor:pointer;font-size:.85rem;margin-left:.4rem; }
 
+    /* ===== TRANSFER MODAL SPECIFIC ===== */
+    .transfer-type-tabs { display:flex;gap:.5rem;margin-bottom:1.2rem; }
+    .tab-btn {
+      flex:1;padding:.6rem;border:1.5px solid #e5e7eb;border-radius:.6rem;
+      background:#f9fafb;cursor:pointer;font-size:.85rem;font-weight:600;
+      color:#6b7280;transition:all .15s;text-align:center;
+    }
+    .tab-btn.active { background:linear-gradient(135deg,#3b82f6,#2563eb);color:white;border-color:#2563eb; }
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+
+    .bank-select-grid { display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem; }
+    .bank-option {
+      border:1.5px solid #e5e7eb;border-radius:.6rem;padding:.6rem .8rem;
+      cursor:pointer;display:flex;align-items:center;gap:.5rem;font-size:.82rem;
+      font-weight:600;transition:all .15s;background:white;
+    }
+    .bank-option:hover { border-color:#3b82f6;background:#eff6ff; }
+    .bank-option.selected { border-color:#2563eb;background:#eff6ff;color:#2563eb; }
+    .bank-logo { width:24px;height:24px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:white;flex-shrink:0; }
+
+    .transfer-summary {
+      background:#f0fdf4;border:1.5px solid #86efac;border-radius:.75rem;
+      padding:1rem 1.2rem;margin-top:1rem;display:none;
+    }
+    .transfer-summary.show { display:block; }
+    .ts-row { display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:.3rem; }
+    .ts-row:last-child { margin-bottom:0;font-weight:700;border-top:1px solid #86efac;padding-top:.4rem;margin-top:.4rem; }
+
+    /* SUCCESS SCREEN */
+    .success-screen {
+      display:none;flex-direction:column;align-items:center;justify-content:center;
+      padding:2rem 1rem;text-align:center;
+    }
+    .success-screen.show { display:flex;animation:slideUp .4s ease; }
+    .success-circle {
+      width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);
+      display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;
+      box-shadow:0 8px 24px rgba(34,197,94,.3);
+    }
+    .success-title { font-size:1.3rem;font-weight:700;color:#1a1f2e;margin-bottom:.4rem; }
+    .success-sub { font-size:.9rem;color:#6b7280;margin-bottom:1.5rem;line-height:1.5; }
+    .success-ref { background:#f3f4f6;border-radius:.6rem;padding:.5rem 1rem;font-size:.82rem;color:#374151;font-family:'Courier New',monospace;margin-bottom:1.5rem; }
+
+    /* ===== DEPOSIT / INVESTMENT MODAL ===== */
+    .invest-grid { display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.2rem; }
+    .invest-card {
+      border:1.5px solid #e5e7eb;border-radius:.75rem;padding:1rem;cursor:pointer;
+      transition:all .15s;background:white;position:relative;overflow:hidden;
+    }
+    .invest-card:hover { border-color:#3b82f6;box-shadow:0 4px 16px rgba(37,99,235,.1); }
+    .invest-card.selected { border-color:#2563eb;background:#eff6ff; }
+    .invest-card-icon { font-size:1.5rem;margin-bottom:.5rem; }
+    .invest-card-name { font-weight:700;font-size:.88rem;color:#1a1f2e;margin-bottom:.2rem; }
+    .invest-card-return { font-size:.78rem;color:#22c55e;font-weight:600; }
+    .invest-card-risk { font-size:.72rem;color:#6b7280;margin-top:.2rem; }
+    .invest-badge {
+      position:absolute;top:.5rem;right:.5rem;font-size:.65rem;font-weight:700;
+      padding:2px 6px;border-radius:4px;
+    }
+    .badge-popular { background:#fef3c7;color:#92400e; }
+    .badge-new { background:#dcfce7;color:#166534; }
+    .badge-hot { background:#fee2e2;color:#991b1b; }
+
+    .invest-detail-box {
+      background:#f8f9fa;border-radius:.75rem;padding:1rem 1.2rem;margin-bottom:1rem;
+      border:1px solid #e5e7eb;display:none;
+    }
+    .invest-detail-box.show { display:block; }
+    .idb-row { display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.3rem;color:#374151; }
+    .idb-row span:first-child { color:#6b7280; }
+    .idb-row.total { font-weight:700;border-top:1px solid #e5e7eb;padding-top:.4rem;margin-top:.3rem; }
+
+    /* ===== MORE MODAL ===== */
+    .more-grid { display:grid;grid-template-columns:1fr 1fr;gap:.75rem; }
+    .more-item {
+      border:1.5px solid #e5e7eb;border-radius:.75rem;padding:1.1rem 1rem;
+      cursor:pointer;transition:all .15s;background:white;display:flex;align-items:center;gap:.8rem;
+    }
+    .more-item:hover { border-color:#3b82f6;box-shadow:0 4px 16px rgba(37,99,235,.1); }
+    .more-item-icon {
+      width:40px;height:40px;border-radius:.6rem;background:#eff6ff;
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .more-item-text h4 { font-size:.88rem;font-weight:700;color:#1a1f2e;margin-bottom:.15rem; }
+    .more-item-text p { font-size:.75rem;color:#6b7280;line-height:1.3; }
+
+    /* Sub-panel for More items */
+    .more-panel { display:none; }
+    .more-panel.show { display:block;animation:slideUp .3s ease; }
+    .back-btn {
+      background:none;border:none;cursor:pointer;color:#3b82f6;font-size:.9rem;
+      font-weight:600;padding:0;margin-bottom:1rem;display:flex;align-items:center;gap:.3rem;
+    }
+    .back-btn:hover { color:#1d4ed8; }
+    .stat-row { display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid #f3f4f6; }
+    .stat-row:last-child { border-bottom:none; }
+    .stat-label { font-size:.88rem;color:#6b7280; }
+    .stat-value { font-size:.9rem;font-weight:700;color:#1a1f2e; }
+    .stat-value.positive { color:#22c55e; }
+    .stat-value.negative { color:#ef4444; }
+    .progress-bar { height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin-top:.3rem; }
+    .progress-fill { height:100%;background:linear-gradient(90deg,#3b82f6,#2563eb);border-radius:3px;transition:width .8s ease; }
+    .card-freeze-toggle {
+      display:flex;justify-content:space-between;align-items:center;
+      padding:.75rem 1rem;background:#f8f9fa;border-radius:.75rem;margin-bottom:.75rem;border:1px solid #e5e7eb;
+    }
+    .toggle-switch {
+      width:44px;height:24px;background:#e5e7eb;border-radius:12px;cursor:pointer;
+      position:relative;transition:background .2s;border:none;flex-shrink:0;
+    }
+    .toggle-switch.on { background:#3b82f6; }
+    .toggle-switch::after {
+      content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:white;
+      top:3px;left:3px;transition:left .2s;box-shadow:0 1px 4px rgba(0,0,0,.2);
+    }
+    .toggle-switch.on::after { left:23px; }
+    .notif-item { display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid #f3f4f6; }
+    .notif-item:last-child { border-bottom:none; }
+
+    /* ===== PROCESSING OVERLAY (inside modal) ===== */
+    .processing-overlay {
+      display:none;position:absolute;inset:0;background:white;border-radius:1.25rem;
+      flex-direction:column;align-items:center;justify-content:center;
+      z-index:10;padding:2rem;text-align:center;
+    }
+    .processing-overlay.show { display:flex;animation:fadeIn .2s ease; }
+    .proc-ring {
+      width:72px;height:72px;border-radius:50%;
+      border:5px solid #e5e7eb;border-top-color:#2563eb;
+      animation:spin .85s linear infinite;margin-bottom:1.4rem;
+    }
+    .proc-title { font-size:1.1rem;font-weight:700;color:#1a1f2e;margin-bottom:.4rem; }
+    .proc-sub { font-size:.85rem;color:#6b7280;line-height:1.5;margin-bottom:1.2rem; }
+    .proc-steps { display:flex;flex-direction:column;gap:.4rem;width:100%;max-width:260px; }
+    .proc-step {
+      display:flex;align-items:center;gap:.6rem;font-size:.82rem;
+      color:#9ca3af;transition:color .3s ease;
+    }
+    .proc-step.active { color:#2563eb;font-weight:600; }
+    .proc-step.done { color:#22c55e;font-weight:600; }
+    .proc-step-dot {
+      width:8px;height:8px;border-radius:50%;background:#e5e7eb;
+      flex-shrink:0;transition:background .3s ease;
+    }
+    .proc-step.active .proc-step-dot { background:#2563eb; }
+    .proc-step.done .proc-step-dot { background:#22c55e; }
+
     @media(max-width:680px){
-      .balance-card { flex-direction: column; align-items: flex-start; min-height: auto; }
-      .vip-card { width: 100%; min-width: unset; margin-left: 0; margin-top: 1.5rem; height: auto; }
-      .quick-actions { grid-template-columns: repeat(2,1fr); }
-      .date-row { grid-template-columns: 1fr; }
+      .balance-card { flex-direction:column;align-items:flex-start;min-height:auto; }
+      .vip-card { width:100%;min-width:unset;margin-left:0;margin-top:1.5rem;height:auto; }
+      .quick-actions { grid-template-columns:repeat(2,1fr); }
+      .date-row { grid-template-columns:1fr; }
+      .bank-select-grid { grid-template-columns:1fr; }
+      .invest-grid { grid-template-columns:1fr; }
+      .more-grid { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -198,15 +322,15 @@
 <!-- OVERLAY BLANCO -->
 <div id="white-overlay" style="position:fixed;inset:0;background:white;z-index:9997;display:none;pointer-events:none;transition:opacity 1.4s ease;"></div>
 
-<!-- ===== MODAL EXTRACTOS BANCARIOS ===== -->
+<!-- ============================= MODALS ============================= -->
+
+<!-- MODAL EXTRACTOS -->
 <div class="modal-overlay" id="extractosModal">
   <div class="modal-box">
     <div class="modal-header">
       <h2>📄 Extractos Bancarios</h2>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-close" onclick="closeModal('extractosModal')">✕</button>
     </div>
-
-    <!-- Beneficiario editable -->
     <div class="form-group">
       <label>Titular / Beneficiario</label>
       <div class="beneficiary-row">
@@ -222,8 +346,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Rango temporal -->
     <div class="form-group">
       <label>Rango temporal</label>
       <select id="rangePreset" onchange="applyPreset()">
@@ -237,19 +359,10 @@
         <option value="all">Todos los movimientos</option>
       </select>
     </div>
-
     <div class="date-row form-group">
-      <div>
-        <label>Desde</label>
-        <input type="date" id="dateFrom" onchange="updatePreview()" />
-      </div>
-      <div>
-        <label>Hasta</label>
-        <input type="date" id="dateTo" onchange="updatePreview()" />
-      </div>
+      <div><label>Desde</label><input type="date" id="dateFrom" onchange="updatePreview()" /></div>
+      <div><label>Hasta</label><input type="date" id="dateTo" onchange="updatePreview()" /></div>
     </div>
-
-    <!-- Preview resumen -->
     <div class="preview-section" id="previewSection">
       <h4>Resumen del período</h4>
       <div class="summary-box" id="summaryBox">
@@ -257,17 +370,379 @@
         <div class="summary-row"><span style="color:#ef4444;">▼ Total Gastos</span><span id="sumExpense" style="color:#ef4444;font-weight:600;">—</span></div>
         <div class="summary-row"><span>Saldo neto período</span><span id="sumNet">—</span></div>
       </div>
-
       <h4 style="margin-top:1rem;">Movimientos (<span id="txCount">0</span>)</h4>
       <div id="previewList" style="max-height:220px;overflow-y:auto;"></div>
     </div>
-
     <button class="btn-primary" onclick="generatePDF()">⬇ Descargar Extracto PDF</button>
-    <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+    <button class="btn-secondary" onclick="closeModal('extractosModal')">Cancelar</button>
   </div>
 </div>
 
-<!-- ===== DASHBOARD ===== -->
+<!-- MODAL TRANSFER -->
+<div class="modal-overlay" id="transferModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>↗ Send Transfer</h2>
+      <button class="modal-close" onclick="closeModal('transferModal'); resetTransfer();">✕</button>
+    </div>
+
+    <!-- Main form -->
+    <div id="transferForm">
+      <!-- Transfer type tabs -->
+      <div class="transfer-type-tabs">
+        <button class="tab-btn active" onclick="switchTransferType('iban', this)">🇪🇺 IBAN Transfer</button>
+        <button class="tab-btn" onclick="switchTransferType('bic', this)">🌐 BIC/SWIFT Wire</button>
+      </div>
+
+      <!-- IBAN tab -->
+      <div class="tab-content active" id="tab-iban">
+        <div class="form-group">
+          <label>Select Destination Bank</label>
+          <div class="bank-select-grid" id="bankGrid">
+            <div class="bank-option" onclick="selectBank(this,'BBVA','ES91 2100 0418 4502 0005 1332','BBVAESMMXXX','#004B8D')">
+              <div class="bank-logo" style="background:#004B8D;">B</div> BBVA
+            </div>
+            <div class="bank-option" onclick="selectBank(this,'CaixaBank','ES79 2100 0813 6101 2345 6789','CAIXESBBXXX','#0077CC')">
+              <div class="bank-logo" style="background:#0077CC;">C</div> CaixaBank
+            </div>
+            <div class="bank-option" onclick="selectBank(this,'Revolut','GB29 REVO 0099 6954 1009 17','REVOLT21XXX','#191C1F')">
+              <div class="bank-logo" style="background:#191C1F;">R</div> Revolut
+            </div>
+            <div class="bank-option" onclick="selectBank(this,'Trade Republic','DE89 3704 0044 0532 0130 00','COBADEFFXXX','#0FBEA5')">
+              <div class="bank-logo" style="background:#0FBEA5;">T</div> Trade Republic
+            </div>
+            <div class="bank-option" onclick="selectBank(this,'Santander','ES60 0049 6001 9521 0001 9601','BSCHESMMXXX','#EC0000')">
+              <div class="bank-logo" style="background:#EC0000;">S</div> Santander
+            </div>
+            <div class="bank-option" onclick="selectBank(this,'N26','DE75 1001 0010 0987 6543 21','NTSBDEB1XXX','#26282B')">
+              <div class="bank-logo" style="background:#26282B;">N</div> N26
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>IBAN</label>
+          <input type="text" id="ibanInput" placeholder="e.g. ES91 2100 0418 4502 0005 1332" oninput="updateTransferSummary()" />
+        </div>
+      </div>
+
+      <!-- BIC/SWIFT tab -->
+      <div class="tab-content" id="tab-bic">
+        <div class="form-group" style="background:#eff6ff;border-radius:.75rem;padding:.9rem 1rem;border:1px solid #bfdbfe;margin-bottom:1rem;">
+          <p style="font-size:.82rem;color:#1d4ed8;line-height:1.5;">
+            <strong>BIC/SWIFT Wire</strong> — Used for international transfers without IBAN (e.g. Cayman Islands, USA, UK non-SEPA). Cayman National Bank SWIFT/BIC: <strong>CNATKYKY018</strong>
+          </p>
+        </div>
+        <div class="form-group">
+          <label>Recipient Bank Name</label>
+          <input type="text" id="bicBankName" placeholder="e.g. First Caribbean International Bank" oninput="updateTransferSummary()" />
+        </div>
+        <div class="form-group">
+          <label>BIC / SWIFT Code</label>
+          <input type="text" id="bicCode" placeholder="e.g. FCIBKYKX" maxlength="11" oninput="updateTransferSummary()" style="font-family:'Courier New',monospace;letter-spacing:1px;" />
+        </div>
+        <div class="form-group">
+          <label>Account Number / IBAN (if applicable)</label>
+          <input type="text" id="bicAccount" placeholder="Account number or leave blank" oninput="updateTransferSummary()" />
+        </div>
+      </div>
+
+      <!-- Common fields -->
+      <div class="form-group">
+        <label>Recipient Full Name</label>
+        <input type="text" id="recipientName" placeholder="Full name of the recipient" oninput="updateTransferSummary()" />
+      </div>
+      <div class="form-group">
+        <label>Amount (£)</label>
+        <input type="number" id="transferAmount" placeholder="0.00" min="1" oninput="updateTransferSummary()" />
+      </div>
+      <div class="form-group">
+        <label>Reference / Concept</label>
+        <input type="text" id="transferRef" placeholder="Payment reference (optional)" oninput="updateTransferSummary()" />
+      </div>
+
+      <!-- Summary preview -->
+      <div class="transfer-summary" id="transferSummary">
+        <div style="font-size:.8rem;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;">Transfer Summary</div>
+        <div class="ts-row"><span style="color:#6b7280;">To</span><span id="ts-recipient" style="font-weight:600;">—</span></div>
+        <div class="ts-row"><span style="color:#6b7280;">Bank</span><span id="ts-bank">—</span></div>
+        <div class="ts-row"><span style="color:#6b7280;">IBAN / Account</span><span id="ts-iban" style="font-family:'Courier New',monospace;font-size:.82rem;">—</span></div>
+        <div class="ts-row"><span style="color:#6b7280;">Reference</span><span id="ts-ref">—</span></div>
+        <div class="ts-row"><span>Amount</span><span id="ts-amount" style="color:#2563eb;">—</span></div>
+      </div>
+
+      <button class="btn-primary" onclick="sendTransfer()" style="margin-top:1rem;">Send Transfer</button>
+      <button class="btn-secondary" onclick="closeModal('transferModal'); resetTransfer();">Cancel</button>
+    </div>
+
+    <!-- Success screen -->
+    <div class="success-screen" id="transferSuccess">
+      <div class="success-circle">
+        <svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">Transfer Sent!</div>
+      <div class="success-sub" id="successSubText">Your transfer has been processed successfully.</div>
+      <div class="success-ref" id="successRef">REF: —</div>
+      <button class="btn-primary" onclick="closeModal('transferModal'); resetTransfer();" style="max-width:220px;">Done</button>
+    </div>
+
+    <!-- Processing overlay -->
+    <div class="processing-overlay" id="transferProcessing">
+      <div class="proc-ring"></div>
+      <div class="proc-title">Processing Transfer</div>
+      <div class="proc-sub">Please wait while we securely process your transaction.</div>
+      <div class="proc-steps">
+        <div class="proc-step active" id="tstep1"><div class="proc-step-dot"></div>Verifying account details</div>
+        <div class="proc-step" id="tstep2"><div class="proc-step-dot"></div>Authorising funds</div>
+        <div class="proc-step" id="tstep3"><div class="proc-step-dot"></div>Contacting recipient bank</div>
+        <div class="proc-step" id="tstep4"><div class="proc-step-dot"></div>Finalising transaction</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DEPOSIT / INVESTMENT -->
+<div class="modal-overlay" id="depositModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>📈 Corporate Investment</h2>
+      <button class="modal-close" onclick="closeModal('depositModal'); resetDeposit();">✕</button>
+    </div>
+
+    <div id="depositForm">
+      <p style="font-size:.85rem;color:#6b7280;margin-bottom:1.2rem;line-height:1.5;">Select an investment vehicle. Your funds are managed through Cayman National Bank's institutional portfolio desk.</p>
+
+      <div class="invest-grid" id="investGrid">
+        <div class="invest-card" onclick="selectInvestment(this,'Global REIT Fund','Real estate investment trust portfolio across EU & US markets','8.4% p.a.','Medium','REIT','12 months','£50,000')">
+          <span class="invest-badge badge-popular">★ Popular</span>
+          <div class="invest-card-icon">🏢</div>
+          <div class="invest-card-name">Global REIT Fund</div>
+          <div class="invest-card-return">▲ 8.4% p.a. expected</div>
+          <div class="invest-card-risk">Risk: Medium · Min. £50,000</div>
+        </div>
+        <div class="invest-card" onclick="selectInvestment(this,'Private Equity Growth','Stakes in pre-IPO European tech & fintech companies','14.2% p.a.','High','PE','24 months','£250,000')">
+          <span class="invest-badge badge-hot">🔥 Hot</span>
+          <div class="invest-card-icon">🚀</div>
+          <div class="invest-card-name">Private Equity Growth</div>
+          <div class="invest-card-return">▲ 14.2% p.a. expected</div>
+          <div class="invest-card-risk">Risk: High · Min. £250,000</div>
+        </div>
+        <div class="invest-card" onclick="selectInvestment(this,'Fixed Income Bond Portfolio','AAA-rated sovereign and corporate bonds','5.1% p.a.','Low','BOND','6 months','£10,000')">
+          <div class="invest-card-icon">🏦</div>
+          <div class="invest-card-name">Fixed Income Bonds</div>
+          <div class="invest-card-return">▲ 5.1% p.a. guaranteed</div>
+          <div class="invest-card-risk">Risk: Low · Min. £10,000</div>
+        </div>
+        <div class="invest-card" onclick="selectInvestment(this,'Commodities Basket','Diversified exposure to gold, oil & agricultural futures','11.7% p.a.','High','CMD','18 months','£100,000')">
+          <span class="invest-badge badge-new">✦ New</span>
+          <div class="invest-card-icon">🪙</div>
+          <div class="invest-card-name">Commodities Basket</div>
+          <div class="invest-card-return">▲ 11.7% p.a. expected</div>
+          <div class="invest-card-risk">Risk: High · Min. £100,000</div>
+        </div>
+        <div class="invest-card" onclick="selectInvestment(this,'ESG Sustainability Fund','Green bonds, renewables and ESG-compliant equities','6.8% p.a.','Low-Medium','ESG','12 months','£25,000')">
+          <div class="invest-card-icon">🌿</div>
+          <div class="invest-card-name">ESG Sustainability</div>
+          <div class="invest-card-return">▲ 6.8% p.a. expected</div>
+          <div class="invest-card-risk">Risk: Low-Medium · Min. £25,000</div>
+        </div>
+        <div class="invest-card" onclick="selectInvestment(this,'Emerging Markets EM50','Diversified EM equities in Asia & LatAm','13.5% p.a.','High','EM50','24 months','£150,000')">
+          <div class="invest-card-icon">🌏</div>
+          <div class="invest-card-name">Emerging Markets EM50</div>
+          <div class="invest-card-return">▲ 13.5% p.a. expected</div>
+          <div class="invest-card-risk">Risk: High · Min. £150,000</div>
+        </div>
+      </div>
+
+      <div class="invest-detail-box" id="investDetailBox">
+        <div style="font-size:.8rem;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;" id="investDetailTitle">Selected Fund</div>
+        <div class="idb-row"><span>Description</span><span id="idb-desc" style="text-align:right;max-width:55%;font-size:.82rem;color:#374151;">—</span></div>
+        <div class="idb-row"><span>Expected Return</span><span id="idb-return" style="color:#22c55e;font-weight:700;">—</span></div>
+        <div class="idb-row"><span>Risk Level</span><span id="idb-risk">—</span></div>
+        <div class="idb-row"><span>Lock-up Period</span><span id="idb-lock">—</span></div>
+        <div class="idb-row"><span>Min. Investment</span><span id="idb-min">—</span></div>
+      </div>
+
+      <div class="form-group">
+        <label>Investment Amount (£)</label>
+        <input type="number" id="investAmount" placeholder="Enter amount" min="0" oninput="updateInvestCalc()" />
+      </div>
+
+      <div class="invest-detail-box show" id="investCalcBox" style="display:none;">
+        <div style="font-size:.8rem;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;">Projected Returns</div>
+        <div class="idb-row"><span>Principal</span><span id="calc-principal">—</span></div>
+        <div class="idb-row"><span>Annual Return</span><span id="calc-annual" style="color:#22c55e;font-weight:600;">—</span></div>
+        <div class="idb-row total"><span>Projected Value at Maturity</span><span id="calc-maturity" style="color:#2563eb;font-weight:700;">—</span></div>
+      </div>
+
+      <button class="btn-primary" onclick="confirmInvestment()">Confirm Investment</button>
+      <button class="btn-secondary" onclick="closeModal('depositModal'); resetDeposit();">Cancel</button>
+    </div>
+
+    <!-- Success screen -->
+    <div class="success-screen" id="depositSuccess">
+      <div class="success-circle">
+        <svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">Investment Placed!</div>
+      <div class="success-sub" id="depositSuccessText">Your investment has been processed.</div>
+      <div class="success-ref" id="depositRef">REF: —</div>
+      <button class="btn-primary" onclick="closeModal('depositModal'); resetDeposit();" style="max-width:220px;">Done</button>
+    </div>
+
+    <!-- Processing overlay -->
+    <div class="processing-overlay" id="depositProcessing">
+      <div class="proc-ring"></div>
+      <div class="proc-title">Processing Investment</div>
+      <div class="proc-sub">Allocating funds to your selected portfolio. This may take a moment.</div>
+      <div class="proc-steps">
+        <div class="proc-step active" id="istep1"><div class="proc-step-dot"></div>Verifying investor profile</div>
+        <div class="proc-step" id="istep2"><div class="proc-step-dot"></div>Reserving fund allocation</div>
+        <div class="proc-step" id="istep3"><div class="proc-step-dot"></div>Executing order</div>
+        <div class="proc-step" id="istep4"><div class="proc-step-dot"></div>Confirming with portfolio desk</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL MORE -->
+<div class="modal-overlay" id="moreModal">
+  <div class="modal-box">
+    <div id="moreMain">
+      <div class="modal-header">
+        <h2>⚙️ Banking Services</h2>
+        <button class="modal-close" onclick="closeModal('moreModal')">✕</button>
+      </div>
+      <div class="more-grid">
+        <div class="more-item" onclick="showMorePanel('statsPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="more-item-text"><h4>Account Analytics</h4><p>Spending stats & trends</p></div>
+        </div>
+        <div class="more-item" onclick="showMorePanel('cardPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div class="more-item-text"><h4>Card Management</h4><p>Freeze, limits & settings</p></div>
+        </div>
+        <div class="more-item" onclick="showMorePanel('notifPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+          <div class="more-item-text"><h4>Notifications</h4><p>Alerts & preferences</p></div>
+        </div>
+        <div class="more-item" onclick="showMorePanel('limitsPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="more-item-text"><h4>Limits & Security</h4><p>Transfer & spending limits</p></div>
+        </div>
+        <div class="more-item" onclick="showMorePanel('taxPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="more-item-text"><h4>Tax Documents</h4><p>Annual reports & CRS/FATCA</p></div>
+        </div>
+        <div class="more-item" onclick="showMorePanel('benefPanel')">
+          <div class="more-item-icon"><svg width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="more-item-text"><h4>Saved Beneficiaries</h4><p>Manage frequent recipients</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS PANEL -->
+    <div id="statsPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>📊 Account Analytics</h2></div>
+      <div class="summary-box">
+        <div class="summary-row"><span style="color:#6b7280;">Account Balance</span><span style="font-weight:700;color:#2563eb;">£29,831,438.66</span></div>
+      </div>
+      <div class="stat-row"><span class="stat-label">Total Income (All Time)</span><span class="stat-value positive">+£32,931,438.66</span></div>
+      <div class="stat-row"><span class="stat-label">Total Expenses (All Time)</span><span class="stat-value negative">-£313,850.00</span></div>
+      <div class="stat-row"><span class="stat-label">Largest Single Income</span><span class="stat-value">£8,420,000 — Real Estate</span></div>
+      <div class="stat-row"><span class="stat-label">Most Frequent Sender</span><span class="stat-value">Cot&Co (9 transactions)</span></div>
+      <div class="stat-row"><span class="stat-label">Avg. Monthly Income</span><span class="stat-value positive">+£1,646,571.93</span></div>
+      <div class="stat-row" style="flex-direction:column;align-items:flex-start;gap:.4rem;">
+        <span class="stat-label">Portfolio Health</span>
+        <div style="display:flex;justify-content:space-between;width:100%;"><span style="font-size:.82rem;font-weight:600;color:#22c55e;">Excellent</span><span style="font-size:.82rem;color:#6b7280;">99.1% income ratio</span></div>
+        <div class="progress-bar" style="width:100%;"><div class="progress-fill" style="width:99%;"></div></div>
+      </div>
+    </div>
+
+    <!-- CARD MANAGEMENT PANEL -->
+    <div id="cardPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>💳 Card Management</h2></div>
+      <div class="card-freeze-toggle">
+        <div><div style="font-size:.9rem;font-weight:600;">Card Active</div><div style="font-size:.78rem;color:#6b7280;">Visa •••• 8672</div></div>
+        <button class="toggle-switch on" id="cardFreezeToggle" onclick="toggleCardFreeze(this)"></button>
+      </div>
+      <div class="card-freeze-toggle">
+        <div><div style="font-size:.9rem;font-weight:600;">Online Payments</div><div style="font-size:.78rem;color:#6b7280;">E-commerce & web purchases</div></div>
+        <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="card-freeze-toggle">
+        <div><div style="font-size:.9rem;font-weight:600;">International Use</div><div style="font-size:.78rem;color:#6b7280;">Payments outside EU</div></div>
+        <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="stat-row"><span class="stat-label">Daily Spending Limit</span><span class="stat-value positive">Unlimited</span></div>
+      <div class="stat-row"><span class="stat-label">ATM Withdrawal Limit</span><span class="stat-value positive">Unlimited</span></div>
+      <div class="stat-row"><span class="stat-label">Contactless Limit</span><span class="stat-value positive">Unlimited</span></div>
+      <div class="stat-row"><span class="stat-label">Card Expiry</span><span class="stat-value">12 / 2028</span></div>
+      <button class="btn-secondary" style="margin-top:1rem;font-size:.85rem;">Request Replacement Card</button>
+    </div>
+
+    <!-- NOTIFICATIONS PANEL -->
+    <div id="notifPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>🔔 Notifications</h2></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Incoming transfers</span><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Outgoing transfers</span><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Card payments</span><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Investment updates</span><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Security alerts</span><button class="toggle-switch on" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Monthly statements</span><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+      <div class="notif-item"><span style="font-size:.9rem;">Marketing & offers</span><button class="toggle-switch" onclick="this.classList.toggle('on')"></button></div>
+    </div>
+
+    <!-- LIMITS PANEL -->
+    <div id="limitsPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>🔒 Limits & Security</h2></div>
+      <div class="stat-row"><span class="stat-label">Daily Transfer Limit</span><span class="stat-value positive">Unlimited</span></div>
+      <div class="stat-row"><span class="stat-label">Single Transfer Max</span><span class="stat-value positive">Unlimited</span></div>
+      <div class="stat-row"><span class="stat-label">2FA Authentication</span><span class="stat-value positive">Enabled</span></div>
+      <div class="stat-row"><span class="stat-label">Last Login</span><span class="stat-value">Today, 09:14 AM</span></div>
+      <div class="stat-row"><span class="stat-label">Trusted Devices</span><span class="stat-value">3 devices</span></div>
+      <div class="stat-row"><span class="stat-label">Security Level</span><span class="stat-value positive">High</span></div>
+      <button class="btn-secondary" style="margin-top:1rem;font-size:.85rem;">Change PIN / Password</button>
+    </div>
+
+    <!-- TAX DOCUMENTS PANEL -->
+    <div id="taxPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>📁 Tax Documents</h2></div>
+      <p style="font-size:.82rem;color:#6b7280;margin-bottom:1rem;line-height:1.5;">Documents are generated annually and available for download for 7 years.</p>
+      <div class="stat-row"><span class="stat-label">Annual Statement 2025</span><span style="font-size:.82rem;color:#3b82f6;cursor:pointer;font-weight:600;">Download PDF</span></div>
+      <div class="stat-row"><span class="stat-label">CRS / FATCA Report 2025</span><span style="font-size:.82rem;color:#3b82f6;cursor:pointer;font-weight:600;">Download PDF</span></div>
+      <div class="stat-row"><span class="stat-label">Interest Certificate 2025</span><span style="font-size:.82rem;color:#3b82f6;cursor:pointer;font-weight:600;">Download PDF</span></div>
+      <div class="stat-row"><span class="stat-label">Annual Statement 2024</span><span style="font-size:.82rem;color:#3b82f6;cursor:pointer;font-weight:600;">Download PDF</span></div>
+      <div class="stat-row"><span class="stat-label">CRS / FATCA Report 2024</span><span style="font-size:.82rem;color:#3b82f6;cursor:pointer;font-weight:600;">Download PDF</span></div>
+    </div>
+
+    <!-- BENEFICIARIES PANEL -->
+    <div id="benefPanel" class="more-panel">
+      <button class="back-btn" onclick="showMoreMain()">← Back</button>
+      <div class="modal-header" style="margin-bottom:1rem;"><h2>👥 Saved Beneficiaries</h2></div>
+      <div class="stat-row">
+        <div><div style="font-size:.9rem;font-weight:600;">Cot&Co Ltd.</div><div style="font-size:.75rem;color:#6b7280;font-family:'Courier New',monospace;">GB29 NWBK 6016 1331 9268 19</div></div>
+        <span style="font-size:.78rem;color:#3b82f6;cursor:pointer;font-weight:600;">Transfer</span>
+      </div>
+      <div class="stat-row">
+        <div><div style="font-size:.9rem;font-weight:600;">Real Estate Partners</div><div style="font-size:.75rem;color:#6b7280;font-family:'Courier New',monospace;">ES91 2100 0418 4502 0005 1332</div></div>
+        <span style="font-size:.78rem;color:#3b82f6;cursor:pointer;font-weight:600;">Transfer</span>
+      </div>
+      <div class="stat-row">
+        <div><div style="font-size:.9rem;font-weight:600;">Anderson & Sheppard</div><div style="font-size:.75rem;color:#6b7280;font-family:'Courier New',monospace;">GB15 MIDL 4025 3432 1446 70</div></div>
+        <span style="font-size:.78rem;color:#3b82f6;cursor:pointer;font-weight:600;">Transfer</span>
+      </div>
+      <button class="btn-secondary" style="margin-top:1rem;font-size:.85rem;">+ Add New Beneficiary</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================= DASHBOARD ============================= -->
 <div id="app" style="display:none;">
   <header>
     <div class="logo">
@@ -281,7 +756,6 @@
   </header>
 
   <main>
-    <!-- Balance Card -->
     <div class="balance-card">
       <div class="balance-inner">
         <p class="balance-label">Total Balance</p>
@@ -298,8 +772,6 @@
           <p>Valid Thru: 12/28</p>
         </div>
       </div>
-
-      <!-- Tarjeta VIP dorada -->
       <div class="vip-card">
         <div class="top-row">
           <div style="display:flex;align-items:center;gap:12px;">
@@ -325,27 +797,25 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
     <div class="quick-actions">
-      <button class="action-btn">
+      <button class="action-btn" onclick="openModal('transferModal')">
         <svg class="action-icon" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         <span>Transfer</span>
       </button>
-      <button class="action-btn">
+      <button class="action-btn" onclick="openModal('depositModal')">
         <svg class="action-icon" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         <span>Deposit</span>
       </button>
-      <button class="action-btn" onclick="openModal()">
+      <button class="action-btn" onclick="openModal('extractosModal')">
         <svg class="action-icon" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         <span>Extractos</span>
       </button>
-      <button class="action-btn">
+      <button class="action-btn" onclick="openModal('moreModal')">
         <svg class="action-icon" fill="none" stroke="#3b82f6" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
         <span>More</span>
       </button>
     </div>
 
-    <!-- Transactions -->
     <div class="transactions-card">
       <h3>Recent Transactions</h3>
       <div class="transaction-item"><div class="transaction-left"><div class="transaction-icon">↑</div><div class="transaction-info"><h4>Real Estate V2</h4><p>24 Apr, 2026</p></div></div><div class="transaction-amount">+£900,000</div></div>
@@ -426,100 +896,76 @@ function fmtDate(d) {
   const [y,m,day] = d.split('-');
   return `${parseInt(day)} ${months[parseInt(m)-1]}, ${y}`;
 }
+function genRef(prefix) {
+  return prefix + '-' + Date.now().toString().slice(-8).toUpperCase();
+}
 
-// ===== MODAL =====
-function openModal() {
-  const modal = document.getElementById('extractosModal');
-  modal.classList.add('open');
-  // Default: all movements
-  document.getElementById('rangePreset').value = 'all';
-  applyPreset();
+// ===== MODAL SYSTEM =====
+function openModal(id) {
+  const m = document.getElementById(id);
+  m.classList.add('open');
+  if (id === 'extractosModal') {
+    document.getElementById('rangePreset').value = 'all';
+    applyPreset();
+  }
 }
-function closeModal() {
-  document.getElementById('extractosModal').classList.remove('open');
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
 }
-document.getElementById('extractosModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
+// Close on backdrop click
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
 });
 
+// ===== EXTRACTOS =====
 function applyPreset() {
   const preset = document.getElementById('rangePreset').value;
-  const today = new Date('2026-05-29');
-  let from, to;
-  to = '2026-05-29';
-  if (preset === 'this_month') {
-    from = '2026-05-01';
-  } else if (preset === 'last_month') {
-    from = '2026-04-01'; to = '2026-04-30';
-  } else if (preset === 'last_3') {
-    from = '2026-02-28';
-  } else if (preset === 'last_6') {
-    from = '2025-11-29';
-  } else if (preset === 'this_year') {
-    from = '2026-01-01';
-  } else if (preset === 'last_year') {
-    from = '2025-01-01'; to = '2025-12-31';
-  } else if (preset === 'all') {
-    from = '2024-01-01'; to = '2026-12-31';
-  } else {
-    // custom - don't overwrite
-    updatePreview();
-    return;
-  }
+  let from, to = '2026-05-29';
+  if (preset === 'this_month') { from = '2026-05-01'; }
+  else if (preset === 'last_month') { from = '2026-04-01'; to = '2026-04-30'; }
+  else if (preset === 'last_3') { from = '2026-02-28'; }
+  else if (preset === 'last_6') { from = '2025-11-29'; }
+  else if (preset === 'this_year') { from = '2026-01-01'; }
+  else if (preset === 'last_year') { from = '2025-01-01'; to = '2025-12-31'; }
+  else if (preset === 'all') { from = '2024-01-01'; to = '2026-12-31'; }
+  else { updatePreview(); return; }
   document.getElementById('dateFrom').value = from;
   document.getElementById('dateTo').value = to;
   updatePreview();
 }
-
 function getFiltered() {
   const from = document.getElementById('dateFrom').value;
   const to = document.getElementById('dateTo').value;
   if (!from || !to) return [];
   return ALL_TRANSACTIONS.filter(t => t.date >= from && t.date <= to);
 }
-
 function updatePreview() {
   const txs = getFiltered();
   let income = 0, expense = 0;
   txs.forEach(t => { if (t.amount > 0) income += t.amount; else expense += t.amount; });
   const net = income + expense;
-
   document.getElementById('txCount').textContent = txs.length;
   document.getElementById('sumIncome').textContent = txs.length ? '+' + fmt(income) : '—';
   document.getElementById('sumExpense').textContent = txs.length ? '-' + fmt(Math.abs(expense)) : '—';
   const netEl = document.getElementById('sumNet');
   netEl.textContent = txs.length ? (net >= 0 ? '+' : '-') + fmt(Math.abs(net)) : '—';
   netEl.style.color = net >= 0 ? '#22c55e' : '#ef4444';
-
   const list = document.getElementById('previewList');
   list.innerHTML = '';
   txs.forEach(t => {
-    const income = t.amount > 0;
+    const isInc = t.amount > 0;
     const div = document.createElement('div');
     div.className = 'preview-item';
-    div.innerHTML = `
-      <div>
-        <div class="pi-name">${t.name}</div>
-        <div class="pi-date">${fmtDate(t.date)}</div>
-      </div>
-      <div class="pi-amount ${income ? 'pi-income' : 'pi-expense'}">
-        ${income ? '+' : '-'}${fmt(Math.abs(t.amount))}
-      </div>`;
+    div.innerHTML = `<div><div class="pi-name">${t.name}</div><div class="pi-date">${fmtDate(t.date)}</div></div><div class="pi-amount ${isInc?'pi-income':'pi-expense'}">${isInc?'+':'-'}${fmt(Math.abs(t.amount))}</div>`;
     list.appendChild(div);
   });
 }
 
-// ===== BENEFICIARY =====
 function toggleBeneficiaryEdit() {
   const wrap = document.getElementById('beneficiaryInputWrap');
   const input = document.getElementById('beneficiaryInput');
-  if (wrap.style.display === 'block') {
-    wrap.style.display = 'none';
-  } else {
-    wrap.style.display = 'block';
-    input.value = beneficiaryName;
-    input.focus();
-  }
+  if (wrap.style.display === 'block') { wrap.style.display = 'none'; }
+  else { wrap.style.display = 'block'; input.value = beneficiaryName; input.focus(); }
 }
 function saveBeneficiary() {
   const val = document.getElementById('beneficiaryInput').value.trim();
@@ -531,19 +977,15 @@ function saveBeneficiary() {
   document.getElementById('beneficiaryInputWrap').style.display = 'none';
 }
 
-// ===== PDF GENERATION via print window =====
 function generatePDF() {
   const txs = getFiltered();
   if (!txs.length) { alert('No hay movimientos en el rango seleccionado.'); return; }
-
   const from = document.getElementById('dateFrom').value;
   const to   = document.getElementById('dateTo').value;
-
   let income = 0, expense = 0;
   txs.forEach(t => { if (t.amount > 0) income += t.amount; else expense += t.amount; });
   const net = income + expense;
   const refNum = 'CNB-' + Date.now().toString().slice(-8);
-
   const rows = txs.map((t, i) => {
     const isInc = t.amount > 0;
     return `<tr class="${i%2===0?'even':'odd'}">
@@ -554,101 +996,246 @@ function generatePDF() {
       <td class="td-amt ${isInc?'credit':'debit'}">${isInc?'+':'-'}${fmt(Math.abs(t.amount))}</td>
     </tr>`;
   }).join('');
-
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Cayman Bank Statement</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:Arial,sans-serif;color:#1a1f2e;background:white;font-size:10px;}
-  @page{size:A4 portrait;margin:14mm 14mm 16mm 14mm;}
-  @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-  .hdr{background:#2563eb;color:white;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-radius:6px 6px 0 0;margin-bottom:0;}
-  .hdr-left{display:flex;align-items:center;gap:12px;}
-  .hdr-circle{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#2563eb;flex-shrink:0;}
-  .hdr-title{font-size:15px;font-weight:700;}
-  .hdr-sub{font-size:8px;opacity:.85;margin-top:2px;}
-  .hdr-right{text-align:right;font-size:8px;opacity:.9;line-height:1.7;}
-  .acct{display:grid;grid-template-columns:1fr 1fr;background:#f8f9fa;border:1px solid #e5e7eb;border-top:none;padding:10px 14px;margin-bottom:10px;}
-  .acct-block{padding:4px 6px;}
-  .acct-label{font-size:7px;color:#9ca3af;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px;}
-  .acct-value{font-size:10px;font-weight:700;color:#1a1f2e;}
-  .summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;}
-  .sbox{border:1px solid #e5e7eb;border-radius:5px;padding:8px 10px;background:#f8f9fa;}
-  .sbox-label{font-size:7px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
-  .sbox-val{font-size:11px;font-weight:700;}
-  .inc{color:#16a34a;} .exp{color:#dc2626;} .blue{color:#2563eb;}
-  .balbar{background:#2563eb;color:white;display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-radius:4px;margin-bottom:12px;font-size:9px;}
-  .balbar span:last-child{font-size:12px;font-weight:700;}
-  table{width:100%;border-collapse:collapse;}
-  thead tr{background:#2563eb;color:white;}
-  thead th{padding:6px 8px;font-size:8px;font-weight:600;text-align:left;letter-spacing:.4px;}
-  thead th:last-child{text-align:right;}
-  .even{background:#ffffff;} .odd{background:#f9fafb;}
-  td{padding:5px 8px;font-size:8.5px;vertical-align:middle;border-bottom:1px solid #f3f4f6;}
-  .td-stripe{width:5px;padding:0 0 0 2px;}
-  .stripe{display:inline-block;width:3px;height:18px;border-radius:2px;vertical-align:middle;}
-  .stripe.inc{background:#22c55e;} .stripe.exp{background:#ef4444;}
-  .td-date{color:#6b7280;width:80px;}
-  .td-desc{font-weight:600;}
-  .td-type{width:54px;font-size:7.5px;font-weight:600;}
-  .td-amt{text-align:right;font-weight:700;width:110px;}
-  .credit{color:#16a34a;} .debit{color:#dc2626;}
-  .final{margin-top:14px;border:1px solid #e5e7eb;border-radius:5px;overflow:hidden;}
-  .final-hdr{background:#f1f5f9;padding:7px 12px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.4px;}
-  .final-row{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid #f3f4f6;font-size:9px;}
-  .final-row.total{background:#f8f9fa;font-weight:700;}
-  .footer{margin-top:16px;background:#2563eb;color:white;text-align:center;padding:6px;font-size:7px;border-radius:0 0 4px 4px;}
-</style></head><body>
-<div class="hdr">
-  <div class="hdr-left">
-    <div class="hdr-circle">C</div>
-    <div><div class="hdr-title">Cayman National Bank</div><div class="hdr-sub">BANK STATEMENT &mdash; CONFIDENTIAL &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018</div></div>
-  </div>
-  <div class="hdr-right">
-    <div>Statement Date: ${fmtDate('2026-05-29')}</div>
-    <div>Period: ${fmtDate(from)} &ndash; ${fmtDate(to)}</div>
-    <div>Ref: ${refNum}</div>
-  </div>
-</div>
-<div class="acct">
-  <div class="acct-block"><div class="acct-label">Account Holder</div><div class="acct-value">${beneficiaryName}</div></div>
-  <div class="acct-block"><div class="acct-label">SWIFT / BIC</div><div class="acct-value">CNATKYKY018</div></div>
-  <div class="acct-block"><div class="acct-label">Account Number</div><div class="acct-value">&bull;&bull;&bull;&bull; 5711</div></div>
-  <div class="acct-block"><div class="acct-label">Visa Card</div><div class="acct-value">4929 3100 7245 8672</div></div>
-</div>
-<div class="summary">
-  <div class="sbox"><div class="sbox-label">Total Income</div><div class="sbox-val inc">+${fmt(income)}</div></div>
-  <div class="sbox"><div class="sbox-label">Total Expenses</div><div class="sbox-val exp">-${fmt(Math.abs(expense))}</div></div>
-  <div class="sbox"><div class="sbox-label">Net Movement</div><div class="sbox-val ${net>=0?'inc':'exp'}">${net>=0?'+':'-'}${fmt(Math.abs(net))}</div></div>
-</div>
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Cayman Bank Statement</title>
+<style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;color:#1a1f2e;background:white;font-size:10px;}@page{size:A4 portrait;margin:14mm 14mm 16mm 14mm;}@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.hdr{background:#2563eb;color:white;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-radius:6px 6px 0 0;margin-bottom:0;}.hdr-left{display:flex;align-items:center;gap:12px;}.hdr-circle{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#2563eb;flex-shrink:0;}.hdr-title{font-size:15px;font-weight:700;}.hdr-sub{font-size:8px;opacity:.85;margin-top:2px;}.hdr-right{text-align:right;font-size:8px;opacity:.9;line-height:1.7;}.acct{display:grid;grid-template-columns:1fr 1fr;background:#f8f9fa;border:1px solid #e5e7eb;border-top:none;padding:10px 14px;margin-bottom:10px;}.acct-block{padding:4px 6px;}.acct-label{font-size:7px;color:#9ca3af;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px;}.acct-value{font-size:10px;font-weight:700;color:#1a1f2e;}.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;}.sbox{border:1px solid #e5e7eb;border-radius:5px;padding:8px 10px;background:#f8f9fa;}.sbox-label{font-size:7px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}.sbox-val{font-size:11px;font-weight:700;}.inc{color:#16a34a;}.exp{color:#dc2626;}.blue{color:#2563eb;}.balbar{background:#2563eb;color:white;display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-radius:4px;margin-bottom:12px;font-size:9px;}.balbar span:last-child{font-size:12px;font-weight:700;}table{width:100%;border-collapse:collapse;}thead tr{background:#2563eb;color:white;}thead th{padding:6px 8px;font-size:8px;font-weight:600;text-align:left;letter-spacing:.4px;}thead th:last-child{text-align:right;}.even{background:#ffffff;}.odd{background:#f9fafb;}td{padding:5px 8px;font-size:8.5px;vertical-align:middle;border-bottom:1px solid #f3f4f6;}.td-stripe{width:5px;padding:0 0 0 2px;}.stripe{display:inline-block;width:3px;height:18px;border-radius:2px;vertical-align:middle;}.stripe.inc{background:#22c55e;}.stripe.exp{background:#ef4444;}.td-date{color:#6b7280;width:80px;}.td-desc{font-weight:600;}.td-type{width:54px;font-size:7.5px;font-weight:600;}.td-amt{text-align:right;font-weight:700;width:110px;}.credit{color:#16a34a;}.debit{color:#dc2626;}.final{margin-top:14px;border:1px solid #e5e7eb;border-radius:5px;overflow:hidden;}.final-hdr{background:#f1f5f9;padding:7px 12px;font-size:9px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.4px;}.final-row{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid #f3f4f6;font-size:9px;}.final-row.total{background:#f8f9fa;font-weight:700;}.footer{margin-top:16px;background:#2563eb;color:white;text-align:center;padding:6px;font-size:7px;border-radius:0 0 4px 4px;}</style></head><body>
+<div class="hdr"><div class="hdr-left"><div class="hdr-circle">C</div><div><div class="hdr-title">Cayman National Bank</div><div class="hdr-sub">BANK STATEMENT &mdash; CONFIDENTIAL &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018</div></div></div><div class="hdr-right"><div>Statement Date: ${fmtDate('2026-05-29')}</div><div>Period: ${fmtDate(from)} &ndash; ${fmtDate(to)}</div><div>Ref: ${refNum}</div></div></div>
+<div class="acct"><div class="acct-block"><div class="acct-label">Account Holder</div><div class="acct-value">${beneficiaryName}</div></div><div class="acct-block"><div class="acct-label">SWIFT / BIC</div><div class="acct-value">CNATKYKY018</div></div><div class="acct-block"><div class="acct-label">Account Number</div><div class="acct-value">&bull;&bull;&bull;&bull; 5711</div></div><div class="acct-block"><div class="acct-label">Visa Card</div><div class="acct-value">4929 3100 7245 8672</div></div></div>
+<div class="summary"><div class="sbox"><div class="sbox-label">Total Income</div><div class="sbox-val inc">+${fmt(income)}</div></div><div class="sbox"><div class="sbox-label">Total Expenses</div><div class="sbox-val exp">-${fmt(Math.abs(expense))}</div></div><div class="sbox"><div class="sbox-label">Net Movement</div><div class="sbox-val ${net>=0?'inc':'exp'}">${net>=0?'+':'-'}${fmt(Math.abs(net))}</div></div></div>
 <div class="balbar"><span>CURRENT ACCOUNT BALANCE</span><span>${fmt(BALANCE)}</span></div>
-<table>
-  <thead><tr><th style="width:5px;"></th><th>DATE</th><th>DESCRIPTION</th><th>TYPE</th><th style="text-align:right;">AMOUNT</th></tr></thead>
-  <tbody>${rows}</tbody>
-</table>
-<div class="final">
-  <div class="final-hdr">Statement Summary</div>
-  <div class="final-row"><span style="color:#6b7280;">Total Transactions</span><span style="font-weight:600;">${txs.length}</span></div>
-  <div class="final-row"><span style="color:#6b7280;">Total Credits (Income)</span><span class="inc" style="font-weight:700;">+${fmt(income)}</span></div>
-  <div class="final-row"><span style="color:#6b7280;">Total Debits (Expenses)</span><span class="exp" style="font-weight:700;">-${fmt(Math.abs(expense))}</span></div>
-  <div class="final-row"><span style="color:#6b7280;">Net Movement</span><span class="${net>=0?'inc':'exp'}" style="font-weight:700;">${net>=0?'+':'-'}${fmt(Math.abs(net))}</span></div>
-  <div class="final-row total"><span>Current Account Balance</span><span class="blue">${fmt(BALANCE)}</span></div>
-</div>
+<table><thead><tr><th style="width:5px;"></th><th>DATE</th><th>DESCRIPTION</th><th>TYPE</th><th style="text-align:right;">AMOUNT</th></tr></thead><tbody>${rows}</tbody></table>
+<div class="final"><div class="final-hdr">Statement Summary</div><div class="final-row"><span style="color:#6b7280;">Total Transactions</span><span style="font-weight:600;">${txs.length}</span></div><div class="final-row"><span style="color:#6b7280;">Total Credits (Income)</span><span class="inc" style="font-weight:700;">+${fmt(income)}</span></div><div class="final-row"><span style="color:#6b7280;">Total Debits (Expenses)</span><span class="exp" style="font-weight:700;">-${fmt(Math.abs(expense))}</span></div><div class="final-row"><span style="color:#6b7280;">Net Movement</span><span class="${net>=0?'inc':'exp'}" style="font-weight:700;">${net>=0?'+':'-'}${fmt(Math.abs(net))}</span></div><div class="final-row total"><span>Current Account Balance</span><span class="blue">${fmt(BALANCE)}</span></div></div>
 <div class="footer">Cayman National Bank &nbsp;|&nbsp; SWIFT/BIC: CNATKYKY018 &nbsp;|&nbsp; Confidential &mdash; intended solely for the named account holder.</div>
 <script>window.onload=function(){window.print();}<\/script>
 </body></html>`;
-
   const w = window.open('', '_blank');
-  if (!w) { alert('Permite las ventanas emergentes en tu navegador para descargar el PDF.'); return; }
+  if (!w) { alert('Permite las ventanas emergentes en tu navegador.'); return; }
   w.document.write(html);
   w.document.close();
+}
+
+// ===== TRANSFER =====
+let selectedBankName = '';
+let selectedIBAN = '';
+let currentTransferType = 'iban';
+
+function switchTransferType(type, btn) {
+  currentTransferType = type;
+  document.querySelectorAll('.transfer-type-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-iban').classList.toggle('active', type === 'iban');
+  document.getElementById('tab-bic').classList.toggle('active', type === 'bic');
+  updateTransferSummary();
+}
+
+function selectBank(el, name, iban, bic, color) {
+  document.querySelectorAll('#bankGrid .bank-option').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedBankName = name;
+  selectedIBAN = iban;
+  document.getElementById('ibanInput').value = iban;
+  updateTransferSummary();
+}
+
+function updateTransferSummary() {
+  const recipient = document.getElementById('recipientName').value.trim();
+  const amount = parseFloat(document.getElementById('transferAmount').value);
+  const ref = document.getElementById('transferRef').value.trim();
+  let bank = '', iban = '';
+  if (currentTransferType === 'iban') {
+    bank = selectedBankName || '—';
+    iban = document.getElementById('ibanInput').value.trim() || '—';
+  } else {
+    bank = document.getElementById('bicBankName').value.trim() || '—';
+    iban = document.getElementById('bicCode').value.trim() || '—';
+    const acc = document.getElementById('bicAccount').value.trim();
+    if (acc) iban += ' / ' + acc;
+  }
+  const summary = document.getElementById('transferSummary');
+  const hasData = recipient || (amount && !isNaN(amount));
+  if (hasData) {
+    summary.classList.add('show');
+    document.getElementById('ts-recipient').textContent = recipient || '—';
+    document.getElementById('ts-bank').textContent = bank;
+    document.getElementById('ts-iban').textContent = iban;
+    document.getElementById('ts-ref').textContent = ref || '—';
+    document.getElementById('ts-amount').textContent = amount && !isNaN(amount) ? fmt(amount) : '—';
+  } else {
+    summary.classList.remove('show');
+  }
+}
+
+function sendTransfer() {
+  const recipient = document.getElementById('recipientName').value.trim();
+  const amount = parseFloat(document.getElementById('transferAmount').value);
+  if (!recipient) { alert('Please enter recipient name.'); return; }
+  if (!amount || isNaN(amount) || amount <= 0) { alert('Please enter a valid amount.'); return; }
+  let bank = '', iban = '';
+  if (currentTransferType === 'iban') {
+    iban = document.getElementById('ibanInput').value.trim();
+    bank = selectedBankName || 'European Bank';
+    if (!iban) { alert('Please enter an IBAN.'); return; }
+  } else {
+    bank = document.getElementById('bicBankName').value.trim();
+    iban = document.getElementById('bicCode').value.trim();
+    if (!bank || !iban) { alert('Please fill in bank name and BIC/SWIFT code.'); return; }
+  }
+  const ref = document.getElementById('transferRef').value.trim();
+  // Show processing overlay
+  document.getElementById('transferForm').style.display = 'none';
+  const proc = document.getElementById('transferProcessing');
+  proc.classList.add('show');
+  const steps = ['tstep1','tstep2','tstep3','tstep4'];
+  const totalMs = 5000 + Math.random() * 2000; // 5-7s
+  const stepMs = totalMs / steps.length;
+  steps.forEach((id, i) => {
+    setTimeout(() => {
+      steps.forEach((sid, si) => {
+        const el = document.getElementById(sid);
+        el.className = 'proc-step' + (si < i ? ' done' : si === i ? ' active' : '');
+      });
+    }, i * stepMs);
+  });
+  setTimeout(() => {
+    // Mark all done
+    steps.forEach(id => { document.getElementById(id).className = 'proc-step done'; });
+    setTimeout(() => {
+      proc.classList.remove('show');
+      const success = document.getElementById('transferSuccess');
+      success.classList.add('show');
+      document.getElementById('successSubText').textContent = `${fmt(amount)} successfully sent to ${recipient} at ${bank}.`;
+      document.getElementById('successRef').textContent = 'REF: ' + genRef('TRF');
+    }, 400);
+  }, totalMs);
+}
+
+function resetTransfer() {
+  setTimeout(() => {
+    document.getElementById('transferForm').style.display = 'block';
+    document.getElementById('transferSuccess').classList.remove('show');
+    document.getElementById('transferProcessing').classList.remove('show');
+    // Reset step states
+    ['tstep1','tstep2','tstep3','tstep4'].forEach((id,i) => {
+      document.getElementById(id).className = 'proc-step' + (i===0?' active':'');
+    });
+    document.getElementById('recipientName').value = '';
+    document.getElementById('transferAmount').value = '';
+    document.getElementById('transferRef').value = '';
+    document.getElementById('ibanInput').value = '';
+    document.getElementById('bicBankName').value = '';
+    document.getElementById('bicCode').value = '';
+    document.getElementById('bicAccount').value = '';
+    document.querySelectorAll('#bankGrid .bank-option').forEach(b => b.classList.remove('selected'));
+    document.getElementById('transferSummary').classList.remove('show');
+    selectedBankName = ''; selectedIBAN = '';
+  }, 300);
+}
+
+// ===== DEPOSIT / INVESTMENT =====
+let selectedInvestment = null;
+
+function selectInvestment(el, name, desc, ret, risk, type, lock, minAmt) {
+  document.querySelectorAll('#investGrid .invest-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedInvestment = { name, desc, ret, risk, type, lock, minAmt };
+  const box = document.getElementById('investDetailBox');
+  box.classList.add('show');
+  document.getElementById('investDetailTitle').textContent = name;
+  document.getElementById('idb-desc').textContent = desc;
+  document.getElementById('idb-return').textContent = ret;
+  document.getElementById('idb-risk').textContent = risk;
+  document.getElementById('idb-lock').textContent = lock;
+  document.getElementById('idb-min').textContent = minAmt;
+  updateInvestCalc();
+}
+
+function updateInvestCalc() {
+  if (!selectedInvestment) return;
+  const amt = parseFloat(document.getElementById('investAmount').value);
+  if (!amt || isNaN(amt) || amt <= 0) {
+    document.getElementById('investCalcBox').style.display = 'none';
+    return;
+  }
+  const rateStr = selectedInvestment.ret.replace(/[^0-9.]/g, '');
+  const rate = parseFloat(rateStr) / 100;
+  const lockStr = selectedInvestment.lock;
+  const months = parseInt(lockStr);
+  const years = months / 12;
+  const projected = amt * Math.pow(1 + rate, years);
+  const annual = amt * rate;
+  const box = document.getElementById('investCalcBox');
+  box.style.display = 'block';
+  document.getElementById('calc-principal').textContent = fmt(amt);
+  document.getElementById('calc-annual').textContent = '+' + fmt(annual) + ' / year';
+  document.getElementById('calc-maturity').textContent = fmt(projected) + ' (in ' + lockStr + ')';
+}
+
+function confirmInvestment() {
+  if (!selectedInvestment) { alert('Please select an investment fund.'); return; }
+  const amt = parseFloat(document.getElementById('investAmount').value);
+  if (!amt || isNaN(amt) || amt <= 0) { alert('Please enter an investment amount.'); return; }
+  // Show processing overlay
+  document.getElementById('depositForm').style.display = 'none';
+  const proc = document.getElementById('depositProcessing');
+  proc.classList.add('show');
+  const steps = ['istep1','istep2','istep3','istep4'];
+  const totalMs = 5000 + Math.random() * 2000;
+  const stepMs = totalMs / steps.length;
+  steps.forEach((id, i) => {
+    setTimeout(() => {
+      steps.forEach((sid, si) => {
+        const el = document.getElementById(sid);
+        el.className = 'proc-step' + (si < i ? ' done' : si === i ? ' active' : '');
+      });
+    }, i * stepMs);
+  });
+  setTimeout(() => {
+    steps.forEach(id => { document.getElementById(id).className = 'proc-step done'; });
+    setTimeout(() => {
+      proc.classList.remove('show');
+      const success = document.getElementById('depositSuccess');
+      success.classList.add('show');
+      document.getElementById('depositSuccessText').textContent = `${fmt(amt)} invested in ${selectedInvestment.name}. Expected return: ${selectedInvestment.ret}. Lock-up: ${selectedInvestment.lock}.`;
+      document.getElementById('depositRef').textContent = 'REF: ' + genRef('INV');
+    }, 400);
+  }, totalMs);
+}
+
+function resetDeposit() {
+  setTimeout(() => {
+    document.getElementById('depositForm').style.display = 'block';
+    document.getElementById('depositSuccess').classList.remove('show');
+    document.getElementById('depositProcessing').classList.remove('show');
+    ['istep1','istep2','istep3','istep4'].forEach((id,i) => {
+      document.getElementById(id).className = 'proc-step' + (i===0?' active':'');
+    });
+    document.getElementById('investAmount').value = '';
+    document.getElementById('investDetailBox').classList.remove('show');
+    document.getElementById('investCalcBox').style.display = 'none';
+    document.querySelectorAll('#investGrid .invest-card').forEach(c => c.classList.remove('selected'));
+    selectedInvestment = null;
+  }, 300);
+}
+
+// ===== MORE MODAL =====
+function showMorePanel(id) {
+  document.getElementById('moreMain').style.display = 'none';
+  document.querySelectorAll('.more-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+}
+function showMoreMain() {
+  document.querySelectorAll('.more-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('moreMain').style.display = 'block';
+}
+function toggleCardFreeze(btn) {
+  btn.classList.toggle('on');
+  const isOn = btn.classList.contains('on');
+  btn.previousElementSibling.querySelector('div').textContent = isOn ? 'Card Active' : 'Card Frozen';
 }
 
 // ===== BOOT SEQUENCE =====
 function randomChar() {
   return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.charAt(Math.floor(Math.random() * 36));
 }
-
 const blackScreen = document.getElementById('black-screen');
 let iteration = 0;
 const blackInterval = setInterval(() => {
@@ -751,7 +1338,7 @@ function toggleBalance() {
       if (i >= maxLen) { clearInterval(iv); animating = false; }
     }, interval);
   } else {
-    e.innerHTML = '<path d="M17.94 17.94A10.003 10.003 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.953 9.953 0 012.121-3.362M6.1 6.1A9.969 9.969 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-4.132 5.411M1 1l22 22"/>';
+    e.innerHTML = '<path d="M17.94 17.94A10.003 10.003 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.953 9.953 0 012.121-3.362M6.1 6.1A9.969 9.969 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-4132 5.411M1 1l22 22"/>';
     d.textContent = '********';
   }
 }
